@@ -5,7 +5,7 @@ How you could make this site works?
 
 With this repository already copied to your computer, you will need install the node_modules with "npm i"
 
-You'll need add your firebase web sdk keys in a archive called: firebaseconfig.js.
+You'll need add your firebase web sdk informations in a archive called: firebaseconfig.js.
 the information that need to have this structure:
 
 const firebase = require('firebase');
