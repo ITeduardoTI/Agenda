@@ -1,6 +1,5 @@
 # Agenda
-Agenda sendo desenvolvida a partir dos conhecimentos obtidos no curso na Udemy: "Curso de JavaScript moderno do básico ao avançado" do professor Luiz Otávio Miranda
-
+Agenda beeing developed with the knowledge obtained from the course in Udemy: "Curso de JavaScript moderno do básico ao avançado" from the professor Luiz Otávio Miranda
 
 How you could make this site works?
 
