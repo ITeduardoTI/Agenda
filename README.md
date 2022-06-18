@@ -36,5 +36,5 @@ After it, the server is running, and you will be able to access all the pages in
 The pages already available are:
 home // localhost:3000/home
 login // localhost:3000/login
-  In this page, you will ble able to post the form to: register or login. This page don't make nothing more than it yet, it make some validation but does not
+  In this page, you will be able to post the form to: register or login. This page don't make nothing more than it yet, it make some validation but does not
   store the information in a database yet.
