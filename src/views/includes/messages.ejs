@@ -1,0 +1,20 @@
+<% if(errors.length !== 0 || success.length !== 0) {%>
+    <div class="m-2">
+        <% if(errors.length> 0) { %>
+            <div class="alert alert-danger">
+                <%for(error of errors) {%>
+                    <p>
+                        <%= error%>
+                    </p>
+                    <% } %>
+    
+            </div>
+            <% } else {%>
+                <div class="alert alert-success">
+                    <%= success%>
+                </div>
+            <% } %>
+        </div>
+        
+        
+<%}%>

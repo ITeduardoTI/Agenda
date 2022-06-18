@@ -1,0 +1,62 @@
+<%- include('./includes/homeHeader')%>
+    <%- include('./includes/homeNavBar')%>
+
+
+        <div style="width:98%">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <%- include('./includes/messages')%>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <!---Errors-->
+                    <div class="display-4 text-center">Registrar</div>
+                    <form action="/login/signup" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="form-group">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control" name="nome" id="nome" aria-describedby="helpId"
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Digite seu nome</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Senha</label>
+                            <input type="text" class="form-control" name="senha" id="senha" aria-describedby="helpId"
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Digite sua senha</small>
+                            <button class="btn btn-info">Registrar</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="display-4 text-center">Entrar</div>
+                    <!--Login-->
+                    <form action="/login/login" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="form-group">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control" name="nome" id="nome" aria-describedby="helpId"
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Digite seu nome</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Senha</label>
+                            <input type="text" class="form-control" name="senha" id="senha" aria-describedby="helpId"
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Digite sua senha</small>
+                        </div>
+                        <button class="btn btn-info">Entrar</button>
+                    </form>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+
+
+
+        <%- include('./includes/homeFooter')%>
