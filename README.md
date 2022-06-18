@@ -1,7 +1,7 @@
-# Agenda
-Agenda beeing developed with the knowledge obtained from the course in Udemy: "Curso de JavaScript moderno do básico ao avançado" from the professor Luiz Otávio Miranda
+# Schedule
+Schedule beeing developed with the knowledge obtained from the course in Udemy: "Curso de JavaScript moderno do básico ao avançado" from the professor Luiz Otávio Miranda
 
-How you could make this site works?
+How do you could make this site works?
 
 With this repository already copied to your computer, you will need install the node_modules with "npm i"
 
