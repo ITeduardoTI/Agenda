@@ -27,7 +27,6 @@ const sessionOptions = session({
 	}
 })
 
-app.use(helmet());
 
 routes.set('views', path.resolve(__dirname, 'src', 'views'));
 routes.set('view engine', 'ejs')
