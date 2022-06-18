@@ -8,6 +8,8 @@ With this repository already copied to your computer, you will need install the 
 You'll need add your firebase web sdk informations in a archive called: firebaseconfig.js.
 the information that need to have this structure:
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 const firebase = require('firebase');
 require('firebase/firestore');
 
@@ -23,6 +25,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 module.exports = firebase
+    
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 All the information in "const firebaseConfig" are give in the firebase web sdk.
   
@@ -31,6 +35,8 @@ after it, you will need open the prompt and use the command:
 cd <to your copied repository>
 npx nodemon 'server.js'
   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
 After it, the server is running, and you will be able to access all the pages inside it.
   
 The pages already available are:
