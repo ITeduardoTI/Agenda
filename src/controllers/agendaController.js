@@ -1,5 +1,15 @@
-exports.novoItem = (req, res) => {
-    res.render('novoItem')
+exports.novoItem = async (req, res) => {
+    const databaseModel = require('../models/databaseModel');
+    const telefone = req.params.id
+    let register;
+    if (telefone) {
+
+        register = await databaseModel.getData({ dbName: 'agenda', docName: telefone })
+        res.render('novoItem', { register: { ...register } })
+    } else {
+        res.render('novoItem', { register: {} })
+
+    }
 }
 
 exports.novoItemPost = async (req, res) => {
@@ -13,11 +23,20 @@ exports.novoItemPost = async (req, res) => {
     const errors = await registerItem.newItem()
 
     if (!errors[0]) {
-        req.flash('success', 'registro incluido com sucesso');
-        req.flash('error', '');
-        req.session.save(function () {
-            res.redirect('/')
-        })
+        if (errors[1]) {
+            req.flash('success', errors[1]);
+            req.flash('errors', '');
+            req.session.save(function () {
+                res.redirect('/')
+            })
+        } else {
+            req.flash('success', 'registro incluido com sucesso');
+            req.flash('error', '');
+            req.session.save(function () {
+                res.redirect('/')
+            })
+        }
+
     } else {
         req.flash('errors', errors[1]);
         req.session.save(function () {
@@ -25,4 +44,18 @@ exports.novoItemPost = async (req, res) => {
         })
     }
 
+}
+
+exports.deleteItem = async (req, res) => {
+    const databaseModel = require('../models/databaseModel');
+    const telefone = req.params.id
+    if (telefone) {
+        await databaseModel.deleteItem('agenda', telefone)
+        req.flash('success', 'Registro deletado com sucesso');
+        req.session.save(function () {
+            res.redirect('/')
+        })
+    } else {
+        res.redirect('/error404')
+    }
 }

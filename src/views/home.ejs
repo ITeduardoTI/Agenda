@@ -1,51 +1,67 @@
 <%- include('./includes/homeHeader')%>
     <%- include('./includes/homeNavBar')%>
 
-        <div style="width:98%">
+        <div style="width:95.7%">
             <div class="d-flex justify-content-center">
 
                 <a href="/novoItem">
-                    <button name="" id="" class="btn btn-primary" btn-lg btn-block">Novo</button>
+                    <button name="" id="" class="btn btn-primary my-2" btn-lg btn-block">Novo</button>
                 </a>
             </div>
-        </div>
 
 
-        <div class="row my-3">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <%- include('./includes/messages')%>
-                <table class="table">
-                    <thead class="bg-dark">
-                        <tr>
-                            <th class="text-white">Nome</th>
-                            <th class="text-white">Sobrenome</th>
-                            <th class="text-white">Email</th>
-                            <th class="text-white">Telefone</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%for(let register of agenda) {%>
-                            <tr>
-                                <td scope="row">
-                                    <%=register.nome%>
-                                </td>
-                                <td>
-                                    <%=register.sobrenome%>
-                                </td>
-                                <td>
-                                    <%=register.email%>
-                                </td>
-                                <td>
-                                    <%=register.telefone%>
-                                </td>
-                            </tr>
-                            <%}%>
+            <div class="row my-3 m-2">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <%- include('./includes/messages')%>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-dark">
+                                    <tr>
+                                        <th class="text-white">Nome</th>
+                                        <th class="text-white">Sobrenome</th>
+                                        <th class="text-white">Email</th>
+                                        <th class="text-white">Telefone</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%for(let register of agenda) {%>
+                                        <tr>
+                                            <td scope="row">
+                                                <%=register.nome%>
+                                            </td>
+                                            <td>
+                                                <%=register.sobrenome%>
+                                            </td>
+                                            <td>
+                                                <%=register.email%>
+                                            </td>
+                                            <td>
+                                                <%=register.telefone%>
+                                            </td>
 
-                    </tbody>
-                </table>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex justify-content-between" , style="width:100px">
+                                                    <a class="text-info"
+                                                        href="/novoItem/<%=register.telefone%>">Editar</a>
+                                                    <a class="text-danger"
+                                                        href="/excluirContato/<%=register.telefone%>">Deletar</a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+
+                                        <%}%>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                </div>
+                <div class="col-lg-2"></div>
             </div>
-            <div class="col-lg-2"></div>
         </div>
 
 

@@ -13,9 +13,10 @@ routes.get('/', homeController.home);
 routes.get('/login', loginController.loginPage);
 routes.post('/login/login', loginController.login);
 routes.post('/login/signUp', loginController.signUp);
-routes.get('/login/logOut', loginController.logOut)
-routes.get('/novoItem', agendaController.novoItem)
-routes.post('/novoItem', agendaController.novoItemPost)
+routes.get('/login/logOut', loginController.logOut);
+routes.get('/novoItem/:id?', middlewares.loginRequired ,agendaController.novoItem);
+routes.post('/novoItem/:id?', middlewares.loginRequired ,agendaController.novoItemPost);
+routes.get('/excluirContato/:id', middlewares.loginRequired ,agendaController.deleteItem);
 routes.get('/error404', homeController.error404);
 
 module.exports = routes;

@@ -6,7 +6,16 @@
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
         <div class="display-1 text-center">Error 404</div>
-        <div class="alert alert-danger text-center">A pagina pesquisada não foi encontrada</div>
+        <%if(errors.length > 0) {%>
+            <div class="alert alert-danger text-center">
+                <%for(error of errors){%>
+                    <%=error%>
+                <%}%>
+            </div>
+        <%} else {%>
+            <div class="alert alert-danger text-center">A pagina pesquisada não foi encontrada</div>
+        <%}%>
+        
     </div>
     <div class="col-lg-2"></div>
 </div>

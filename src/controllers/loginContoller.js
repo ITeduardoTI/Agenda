@@ -1,5 +1,10 @@
 exports.loginPage = (req, res) => {
-    res.render('login')
+    if (!req.session.user) {
+        res.render('login')
+    } else {
+        res.locals.success = "Você já está logado"
+        res.render('ja-logado')
+    }
 }
 
 exports.login = (req, res) => {
@@ -14,12 +19,16 @@ exports.login = (req, res) => {
             req.session.user = { user: nome }
             req.flash('success', "Login efetuado com sucesso!");
             req.flash('errors', '');
+            req.session.save(function () {
+                res.redirect('/')
+            })
         } else {
             req.flash('errors', response[1]);
+            req.session.save(function () {
+                res.redirect('/login')
+            })
         }
-        req.session.save(function () {
-            res.redirect('/login')
-        })
+
     })
 
 }

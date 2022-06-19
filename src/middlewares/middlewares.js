@@ -1,8 +1,8 @@
 exports.middlewareGlobal = (req, res, next) => {
-    res.locals.errors = req.flash('errors');
-    res.locals.success = req.flash('success');
+	res.locals.errors = req.flash('errors');
+	res.locals.success = req.flash('success');
 	res.locals.user = req.session.user;
-    next();
+	next();
 }
 
 exports.checkCsrfError = (err, req, res, next) => {
@@ -17,9 +17,13 @@ exports.csrfMiddleware = (req, res, next) => {
 }
 
 exports.loginRequired = (req, res, next) => {
-	if(req.sessions.user) {
-		console.log(req.sessions.user);
+	if (req.session.user) {
+		console.log(req.session.user);
+		next();
 	} else {
 		req.flash('errors', 'Você não está logado');
+		req.session.save(function () {
+			res.redirect('/error404')
+		})
 	}
 }

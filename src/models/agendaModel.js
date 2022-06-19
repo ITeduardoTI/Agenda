@@ -7,28 +7,54 @@ class agendaModel {
         this.email = email;
         this.telefone = telefone;
         this.errors = [];
+        this.success = [];
     }
 
     async newItem() {
         await this.validations();
         if (this.errors.length == 0) {
-            await databaseModel.registerItem({dbName: 'agenda', doc: this.telefone,
+            await databaseModel.registerItem({
+                dbName: 'agenda', doc: this.telefone,
                 items: {
                     nome: this.nome,
                     sobrenome: this.sobrenome,
                     email: this.email,
                     telefone: this.telefone
-                }})
-            return [false];
+                }
+            })
+            if(this.success.length == 0) {
+                return [false];
+            } else {
+                return [false, this.success];
+            }
         } else {
             return [true, this.errors];
         }
     }
 
+    async editarItem() {
+        try {
+            await databaseModel.updateItem('agenda', this.telefone, {
+                nome: this.nome,
+                sobrenome: this.sobrenome,
+                email: this.email,
+                telefone: this.telefone
+            })
+        } catch(e) {
+            console.log(e);
+        }
+        
+    }
+
     async validations() {
         const credentials = this.credentialValidation();
+        let numberExist;
         if (credentials) {
-            await this.numberAlreadyExist()
+            numberExist = await this.numberAlreadyExist();
+            if(numberExist) {
+                this.editarItem();
+                this.success.push("Contato editado com sucesso")
+            }
         }
     }
 
@@ -54,8 +80,10 @@ class agendaModel {
     async numberAlreadyExist() {
         try {
             const numberExist = await databaseModel.findName('agenda', this.telefone)
-            if(numberExist) {
-                this.errors.push("Numero já existe");
+            if (numberExist) {
+                return true
+            } else {
+                return false
             }
         } catch (error) {
             console.log(error)

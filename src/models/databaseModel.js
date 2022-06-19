@@ -27,7 +27,7 @@ exports.getData = ({ dbName, docName, field }) => {
             .then(response => {
                 const listaDados = []
                 response.forEach(data => {
-                    listaDados.push({...data.data(), id: data.id})
+                    listaDados.push({ ...data.data(), id: data.id })
                 })
                 return listaDados
             })
@@ -67,14 +67,26 @@ exports.registerUser = (databaseName, nome, senha) => {
     })
 }
 
-exports.registerItem = async ({dbName, doc, items}) => {
+exports.registerItem = async ({ dbName, doc, items }) => {
     const inDBName = dbName;
     const inDoc = doc;
     const inItems = items;
 
-    if(!inDoc) {
+    if (!inDoc) {
         await database.collection(inDBName).add(inItems);
     } else {
         await database.collection(inDBName).doc(inDoc).set(inItems);
+    }
+}
+
+exports.updateItem = async (dbName, id, info) => {
+    database.collection(dbName).doc(id).update(info)
+}
+
+exports.deleteItem = async (dbName, id) => {
+    try {
+        await database.collection(dbName).doc(id).delete();
+    } catch (e) {
+        console.log(e)
     }
 }
