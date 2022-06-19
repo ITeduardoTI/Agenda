@@ -1,5 +1,13 @@
+const databaseModel = require('../models/databaseModel')
+
 exports.home = (req, res) => {
-    res.render('home');
+    databaseModel.getData({ dbName: 'agenda' })
+        .then(response => {
+            console.log(response)
+            res.locals.agenda = response
+            res.render('home');
+        })
+
 }
 
 exports.error404 = (req, res) => {

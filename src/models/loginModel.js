@@ -8,21 +8,20 @@ class login {
         this.errors = [];
     }
 
-    async register() {
-        await this.validation()
+    async register(res) {
+        await this.validation(res)
         if (this.errors.length == 0) {
-            databaseModel.registerUser(this.nome, this.senha)
+            databaseModel.registerUser('users', this.nome, this.senha)
             return [false]
         } else {
             return [true, this.errors]
         }
     }
 
-    async login() {
+    async login(res) {
         const credenciaisValidas = this.validLoginCredentials()
-        let usuarioExiste;
         if (credenciaisValidas) {
-            usuarioExiste = await this.loginValidation();
+            await this.loginValidation(res);
         }
         if (this.errors.length == 0) {
             return [false]
@@ -31,16 +30,17 @@ class login {
         }
     }
 
-    async loginValidation() {
+    async loginValidation(res) {
         try {
-            const nomeExiste = await databaseModel.findName(this.nome)
+            const nomeExiste = await databaseModel.findName('users', this.nome)
             if (nomeExiste) {
-                await this.senhaValida()
+                await this.senhaValida(res)
             } else {
                 this.errors.push("Usuário não existe");
             }
         } catch (error) {
             console.log(error)
+            res.redirect('error404')
         }
 
     }
@@ -55,9 +55,9 @@ class login {
         }
     }
 
-    async senhaValida() {
+    async senhaValida(res) {
         try {
-            const senhadb = await databaseModel.getData(this.nome, "senha");
+            const senhadb = await databaseModel.getData({dbName: 'users', docName: this.nome, field: "senha"});
             console.log(senhadb.senha);
             console.log(this.senha)
             if (!bcryptjs.compareSync(this.senha, senhadb.senha)) {
@@ -66,14 +66,15 @@ class login {
             } 
         } catch (error) {
             console.log(error)
+            res.redirect('/error404')
         }
     }
 
-    async validation() {
+    async validation(res) {
         this.credentialsValidation()
         try {
             if (this.errors.length == 0) {
-                await this.nameAlreadyExist()
+                await this.nameAlreadyExist(res)
             }
         } catch (error) {
             console.log(error)
@@ -92,14 +93,15 @@ class login {
         }
     }
 
-    async nameAlreadyExist() {
+    async nameAlreadyExist(res) {
         try {
-            const nomeExist = await databaseModel.findName(this.nome)
-            if (nomeExist) {
+            const nomeExist = await databaseModel.findName('users', this.nome) 
+            if (nomeExist) { 
                 this.errors.push("Usuário já existe");
             }
         } catch (error) {
             console.log(error)
+            res.redirect('/error404')
         }
 
     }

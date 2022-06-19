@@ -21,7 +21,8 @@
     "firebase": "^8.10.1",
     "firebase-admin": "^10.3.0",
     "firestore-store": "^2.0.2",
-    "helmet": "^5.1.0"
+    "helmet": "^5.1.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

@@ -8,9 +8,10 @@ exports.login = (req, res) => {
 
     const model = require('../models/loginModel');
     const validation = new model.login(nome, senha);
-    const errors = validation.login();
+    const errors = validation.login(res);
     errors.then(response => {
-        if(!response[0]) {
+        if (!response[0]) {
+            req.session.user = { user: nome }
             req.flash('success', "Login efetuado com sucesso!");
             req.flash('errors', '');
         } else {
@@ -20,6 +21,7 @@ exports.login = (req, res) => {
             res.redirect('/login')
         })
     })
+
 }
 
 exports.signUp = (req, res) => {
@@ -28,7 +30,7 @@ exports.signUp = (req, res) => {
 
     const model = require('../models/loginModel');
     const validation = new model.login(nome, senha);
-    const errors = validation.register(req)
+    const errors = validation.register(res)
     errors.then(response => {
         if (!response[0]) {
             req.flash('success', 'Registro efetuado com sucesso!');
@@ -42,4 +44,11 @@ exports.signUp = (req, res) => {
     })
 
 
+}
+
+exports.logOut = (req, res) => {
+    const model = require('../models/loginModel');
+    req.session.destroy(() => {
+        res.redirect('/')
+    })
 }

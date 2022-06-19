@@ -1,0 +1,43 @@
+<%- include('./includes/homeHeader')%>
+    <%- include('./includes/homeNavBar')%>
+
+        <div style="width:98%">
+            <div class="row my-3">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <%- include('./includes/messages')%>
+                        <h3 class="text-center">Inclua as informações do contato abaixo</h3>
+                        <form action="" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <div class="form-group">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control" name="nome" id="nome" aria-describedby="helpId"
+                                    placeholder="">
+                                <small id="helpId" class="form-text text-muted">Digite o nome do contato</small>
+
+                                <label for="sobrenome">Sobrenome</label>
+                                <input type="text" class="form-control" name="sobrenome" id="sobrenome"
+                                    aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Digite o Sobrenome do contato</small>
+
+                                <label for="email">E-mail</label>
+                                <input type="text" class="form-control" name="email" id="email"
+                                    aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Digite o email do contato</small>
+
+                                <label for="telefone">Telefone</label>
+                                <input type="text" class="form-control" name="telefone" id="telefone"
+                                    aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Digite o telefone do contato</small>
+                            </div>
+                            <button class="btn btn-primary" btn-lg btn-block">Enviar</button>
+                        </form>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+
+        </div>
+
+
+
+        <%- include('./includes/homeFooter')%>
