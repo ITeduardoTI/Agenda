@@ -1,5 +1,5 @@
-# Schedule
-Schedule beeing developed with the knowledge obtained from the course in Udemy: "Curso de JavaScript moderno do básico ao avançado" from the professor Luiz Otávio Miranda
+# Phone Book
+Phone Book beeing developed with the knowledge obtained from the course in Udemy: "Curso de JavaScript moderno do básico ao avançado" from the professor Luiz Otávio Miranda
 
 How do you could make this site works?
 
